@@ -1,0 +1,37 @@
+<div class="admin-layout">
+  <aside class="sidebar">
+    <nav>
+      <ul>
+         <li>
+          <a routerLink="/logo" routerLinkActive="active">
+            <i class="fas fa-chart-line"></i> Tienda RJSC
+          </a>
+        </li>
+        <li>
+          <a routerLink="/dashboard" routerLinkActive="active">
+            <i class="fas fa-chart-line"></i> Dashboard
+          </a>
+        </li>
+        <li>
+          <a routerLink="/productos">
+            <i class="fas fa-box"></i> Productos
+          </a>
+        </li>
+        <li>
+          <a routerLink="/ventas" routerLinkActive="active">
+            <i class="fas fa-shopping-cart"></i> Ventas
+          </a>
+        </li>
+        <li>
+          <a routerLink="/login" (click)="cerrarSesion()" >
+            <i class="fas fa-shopping-cart" ></i> Cerrar Sesion
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="content-area">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,313 @@
+/* sales.component.css */
+
+/* Contenedor principal del componente de ventas */
+.sales-container {
+    padding: 30px; /* Un padding generoso para un look más espacioso */
+    background-color: #f8fafa; /* Fondo suave para la sección */
+    min-height: calc(100vh - 60px); /* Ajusta si tienes un header fijo */
+    /* mat-elevation-z2 ya te da una sombra, no es necesario redefinirla aquí */
+}
+
+/* Título principal de la sección */
+.sales-container h2 {
+    font-size: 2.5em; /* Título más prominente */
+    color: #000000; /* Color oscuro para el texto principal */
+    margin-bottom: 40px; /* Más espacio debajo del título */
+    text-align: center;
+    font-weight: 700; /* Más grosor para el título principal */
+    letter-spacing: -0.5px; /* Un ligero ajuste para el espaciado de letras */
+}
+
+/* Estilos para la tarjeta de Angular Material */
+mat-card {
+    border-radius: 12px; /* Bordes más redondeados para un look suave */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Sombra más profunda pero elegante */
+    padding: 30px; /* Padding interno generoso para la tarjeta */
+    margin-bottom: 30px; /* Espacio debajo de la tarjeta */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: rgb(255, 255, 255);
+}
+
+mat-card:hover {
+    transform: translateY(-3px); /* Pequeña elevación al pasar el ratón */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12); /* Sombra más grande al pasar el ratón */
+}
+
+mat-card-title {
+    font-size: 1.8em; /* Título de la tarjeta más grande */
+    color: #343a40; /* Gris oscuro para el título de la tarjeta */
+    margin-bottom: 25px; /* Espacio debajo del título de la tarjeta */
+    border-bottom: 1px solid #e0e0e0; /* Una línea sutil debajo del título */
+    padding-bottom: 15px; /* Espacio entre el título y la línea */
+    font-weight: 600;
+}
+
+mat-card-content {
+    padding-top: 15px; /* Espacio entre el título de la tarjeta y el contenido del formulario */
+}
+
+/* Campos de formulario de Angular Material */
+.full-width {
+    width: 100%; /* Asegura que los campos ocupen todo el ancho */
+    margin-bottom: 20px; /* Espacio entre campos */
+}
+
+/* Ajustes visuales para mat-form-field (general, ya que appearance="outline" ya hace mucho) */
+mat-form-field .mat-form-field-wrapper {
+    padding-bottom: 0.5em; /* Reduce el espacio extra debajo del input */
+}
+
+/* Grupo de botones */
+.button-group {
+    display: flex;
+    justify-content: center; /* Centra los botones */
+    gap: 15px; /* Espacio entre botones */
+    margin-top: 25px; /* Espacio encima del grupo de botones */
+    margin-bottom: 20px; /* Espacio debajo del grupo de botones */
+}
+
+/* Botones de Angular Material (Colores basados en tu último CSS) */
+button[mat-raised-button] {
+    padding: 10px 25px; /* Padding generoso para botones */
+    font-size: 1.05em; /* Fuente ligeramente más grande */
+    font-weight: 500;
+    border-radius: 8px; /* Bordes más redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para botones */
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+/* Botón "Agregar Producto" (Originalmente `color="primary"`, ahora usarás una clase) */
+/* Usaremos el verde de tu CSS anterior para "Agregar Producto" */
+.agregar-producto-btn{
+    background-color: #28a745; /* Verde de tu CSS anterior */
+    color: white;
+}
+.agregar-producto-btn:hover {
+    background-color: #218838; /* Verde más oscuro en hover */
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón "Registrar Venta" (Originalmente `color="accent"`, ahora usarás una clase) */
+/* Usaremos el azul de tu CSS anterior para "Registrar Venta" */
+.registrar-venta-btn {
+    background-color: #007bff; /* Azul de tu CSS anterior */
+    color: white;
+}
+.registrar-venta-btn:hover {
+    background-color: #0056b3; /* Azul más oscuro en hover */
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+button[mat-raised-button][disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Botón para ver ventas registradas (MORADO de tu CSS anterior) */
+.mt-4 {
+    text-align: center;
+    margin-top: 40px !important;
+}
+
+button[mat-stroked-button].ver-ventas-btn { /* Clase para especificar el botón de "Ver Ventas" */
+    padding: 10px 25px;
+    font-size: 1.05em;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid #6f42c1; /* Borde morado de tu CSS anterior */
+    color: #6f42c1; /* Texto morado de tu CSS anterior */
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+button[mat-stroked-button].ver-ventas-btn:hover {
+    background-color: #6f42c1; /* Fondo morado en hover */
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Lista de productos agregados (mat-list) */
+mat-list {
+    border: 1px solid #e0e0e0; /* Borde sutil para la lista */
+    border-radius: 8px;
+    background-color: #fefefe; /* Fondo casi blanco para la lista */
+    overflow: hidden; /* Asegura que el border-radius se aplique */
+    margin-top: 25px !important; /* Asegura un buen espacio superior */
+    padding: 0; /* Elimina padding interno de mat-list */
+}
+
+mat-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px; /* Padding dentro de cada item */
+    border-bottom: 1px solid #eeeeee; /* Separador entre items */
+    font-size: 0.95em;
+    color: #495057; /* Gris para el texto del ítem */
+    background-color: #ffffff; /* Fondo blanco para items */
+    transition: background-color 0.2s ease;
+}
+
+mat-list-item:last-child {
+    border-bottom: none; /* Elimina el borde del último item */
+}
+
+mat-list-item:hover {
+    background-color: #f5f5f5; /* Sutil cambio de fondo al pasar el ratón */
+}
+
+mat-list-item span {
+    flex-grow: 1; /* Permite que el texto ocupe el espacio */
+    white-space: normal; /* Permite que el texto se envuelva */
+    margin-right: 10px; /* Espacio antes del botón de eliminar */
+}
+
+/* Ícono de eliminar (ROJO, color inalterado) */
+mat-list-item button[mat-icon-button] {
+    color: #dc3545; /* Rojo para el icono de eliminar */
+    transition: color 0.2s ease, transform 0.2s ease;
+    /* Estilos para asegurar visibilidad en móviles */
+    min-width: 36px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 50%;
+    
+}
+
+mat-list-item button[mat-icon-button]:hover {
+    color: #c82333;
+    transform: scale(1.1); /* Ligeramente más grande al pasar el ratón */
+    background-color: rgba(220, 53, 69, 0.2); /* Fondo más oscuro en hover */
+}
+
+
+/* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
+
+@media (max-width: 768px) {
+    .sales-container {
+        padding: 20px;
+    }
+
+    .sales-container h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    mat-card {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    mat-card-title {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+
+    .full-width {
+        margin-bottom: 15px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button[mat-raised-button] {
+        width: 100%;
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+
+    mat-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    mat-list-item span {
+        margin-bottom: 5px;
+        margin-right: 0;
+        flex-basis: 100%;
+        order: 1;
+    }
+
+    mat-list-item button[mat-icon-button] {
+        align-self: flex-end;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0;
+        order: 2;
+        margin-top: 5px;
+        background-color: rgba(220, 53, 69, 0.1); /* Fondo del botón de eliminar en móvil */
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    mat-list-item button[mat-icon-button] mat-icon {
+        font-size: 24px !important;
+        width: 24px !important;
+        height: 24px !important;
+        line-height: 24px !important;
+        display: block !important;
+        color: #dc3545 !important;
+    }
+
+    .mt-4 {
+        margin-top: 30px !important;
+    }
+
+    button[mat-stroked-button] {
+        width: 100%;
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sales-container {
+        padding: 15px;
+    }
+
+    .sales-container h2 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    mat-card {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    mat-card-title {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+    }
+
+    mat-list-item {
+        font-size: 0.85em;
+    }
+
+    mat-list-item button[mat-icon-button] {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+    }
+    mat-list-item button[mat-icon-button] mat-icon {
+        font-size: 20px !important;
+        width: 20px !important;
+        height: 20px !important;
+        line-height: 20px !important;
+    }
+}

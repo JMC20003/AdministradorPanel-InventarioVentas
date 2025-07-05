@@ -1,0 +1,69 @@
+<div class="sales-container mat-elevation-z2">
+  <h2>Gestión de Ventas</h2>
+
+  <mat-card>
+    <mat-card-title>Registrar Nueva Venta</mat-card-title>
+    <mat-card-content>
+      <form #ventaForm="ngForm">
+
+        <!-- Producto -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Producto</mat-label>
+          <mat-select [(ngModel)]="productoSeleccionado" name="productoSeleccionado" (selectionChange)="cargarTallas()" required>
+            <mat-option *ngFor="let p of listaProductos" [value]="p">
+              {{ p.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Talla -->
+        <mat-form-field appearance="outline" class="full-width" *ngIf="tallasDisponibles.length > 0">
+          <mat-label>Talla</mat-label>
+          <mat-select [(ngModel)]="tallaSeleccionada" name="talla" required>
+            <mat-option *ngFor="let t of tallasDisponibles" [value]="t.talla">
+              {{ t.talla }} (Stock: {{ t.stock }})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Cantidad -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Cantidad</mat-label>
+          <input matInput type="number" [(ngModel)]="cantidad" name="cantidad" min="1" required />
+        </mat-form-field>
+
+        <!-- Botón agregar producto -->
+        <div class="button-group">
+          <button mat-raised-button type="button" class="agregar-producto-btn" (click)="agregarProducto()"
+            [disabled]="!productoSeleccionado || !tallaSeleccionada || !cantidad">
+            Agregar Producto
+          </button>
+        </div>
+
+        <!-- Lista de productos agregados -->
+        <mat-list *ngIf="venta.productos.length > 0" class="mt-2">
+          <mat-list-item *ngFor="let item of venta.productos; let i = index">
+            <span>Producto: {{ obtenerNombreProducto(item.productoId) }} — Talla x Cantidad: {{ item.talla }} x {{ item.cantidad }}</span>
+            <button mat-icon-button color="warn" (click)="eliminarProducto(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+
+        <!-- Botón final -->
+        <div class="button-group mt-2">
+          <button mat-raised-button type="button" class="registrar-venta-btn" (click)="registrarVenta()" [disabled]="venta.productos.length === 0">
+            Registrar Venta
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Botón para ver ventas -->
+  <div class="mt-4">
+   <button  mat-stroked-button class="ver-ventas-btn" routerLink="/visualizar-ventas">
+  Ver las Ventas Registradas
+</button>
+  </div>
+</div>

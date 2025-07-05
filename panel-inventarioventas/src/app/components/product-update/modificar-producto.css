@@ -1,0 +1,425 @@
+/* sales.component.css */
+
+/* Contenedor principal de la sección de ventas */
+.products-container {
+  padding: 25px; /* Aumenta el padding general */
+  background-color: #f8f9fa; /* Un fondo ligeramente diferente para la sección */
+  min-height: calc(100vh - 60px); /* Ajusta para la altura del viewport, asumiendo un header de 60px si lo hubiera */
+  border-radius: 8px; /* Bordes ligeramente redondeados para el contenedor principal */
+}
+
+/* Estilos comunes para tarjetas de formulario y tabla */
+.form-card,
+.table-card {
+  background-color: #ffffff; /* Fondo blanco para las tarjetas */
+  padding: 30px; /* Aumenta el padding dentro de las tarjetas */
+  border-radius: 10px; /* Bordes más redondeados */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra más pronunciada pero suave */
+  margin-bottom: 30px; /* Más espacio entre tarjetas */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transición suave al interactuar */
+}
+
+.form-card:hover,
+.table-card:hover {
+  /*transform: translateY(-3px);  Efecto ligero al pasar el ratón */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Títulos de las secciones y tarjetas */
+h2 {
+  font-size: 2.2em; /* Tamaño de fuente más grande para el título principal */
+  color: #000000; /* Color oscuro para el texto */
+  margin-bottom: 30px; /* Espacio debajo del título principal */
+  text-align: center; /* Centra el título principal */
+  font-weight: 600; /* Un poco más de grosor */
+}
+
+h3 {
+  font-size: 1.6em; /* Tamaño de fuente para los subtítulos de las tarjetas */
+  color: #000000;
+  margin-bottom: 25px; /* Espacio debajo de los subtítulos */
+  border-bottom: 2px solid #e9ecef; /* Una línea divisoria sutil */
+  padding-bottom: 10px; /* Espacio entre el texto y la línea */
+}
+
+/* Grupos de formulario */
+.form-group {
+  margin-bottom: 20px; /* Más espacio entre los grupos de formulario */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px; /* Espacio entre la etiqueta y el input */
+  font-weight: 600; /* Etiquetas más audaces */
+  color: #495057;
+  font-size: 0.95em;
+}
+
+/* estilos de talla stock */
+
+.talla-stock-input-group {
+    display: flex; /* Usa Flexbox para alinear los elementos en una fila */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    gap: 20px; /* Espacio entre los elementos */
+    align-items: flex-end; /* Alinea los elementos al final (útil si los inputs tienen diferentes alturas por los labels) */
+    margin-bottom: 30px; /* Espacio debajo de este grupo */
+    padding: 20px; /* Padding para que coincida con el estilo de tarjeta */
+    background-color: #fcfcfc; /* Fondo ligeramente diferente como los inputs */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03); /* Sombra muy sutil, menos que las tarjetas principales */
+    border: 1px solid #e9ecef; /* Borde suave */
+}
+
+.talla-stock-input-group .form-group {
+    flex: 1; /* Permite que los form-group crezcan para ocupar espacio */
+    min-width: 160px; /* Ancho mínimo para cada input */
+    margin-bottom: 0; /* Anula el margin-bottom predeterminado de form-group */
+}
+
+/* Ajustes para los inputs de talla y stock */
+.talla-stock-input-group .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #495057; /* Consistente con tus labels */
+    font-size: 0.95em;
+}
+
+.talla-stock-input-group .form-group input {
+    width: 100%;
+    padding: 12px 15px; /* Consistente con tus otros inputs */
+    border: 1px solid #ced4da; /* Consistente con tus otros inputs */
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+    color: #495057;
+    background-color: #fcfcfc;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.talla-stock-input-group .form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* ESTILO DEL BOTÓN "AGREGAR TALLA" - AJUSTADO PARA SER MÁS PEQUEÑO Y RESPONSIVO */
+.talla-stock-input-group button[type="button"] { /* Apunta directamente al botón de tipo "button" */
+    background-color: #007bff; /* Color verde de éxito */
+    color: white;
+    padding: 8px 20px; /* **REDUCIDO**: Padding más pequeño */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em; /* **REDUCIDO**: Fuente ligeramente más pequeña */
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    min-width: 120px; /* **REDUCIDO**: Ancho mínimo más pequeño */
+    margin-top: 28px; /* Mantiene la alineación con los inputs */
+}
+
+.talla-stock-input-group button[type="button"]:hover {
+    background-color: #0056b3; /* Verde más oscuro en hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor de la lista de tallas */
+.tallas-list-container {
+    background-color: #ffffff;
+    padding: 25px; /* Aumenta el padding para que coincida con form-card */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra consistente con form-card */
+    margin-bottom: 30px; /* Espacio consistente */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.tallas-list-container:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.tallas-list-container h3 { /* Si quieres un título dentro de esta tarjeta */
+    margin-bottom: 20px; /* Ajusta si no tienes subtítulo aquí */
+}
+
+.tallas-list-container ul {
+    list-style: none; /* Quita los puntos de la lista */
+    padding: 0;
+    margin: 0;
+}
+
+.tallas-list-container li {
+    display: flex;
+    justify-content: space-between; /* Alinea texto a la izquierda y botón a la derecha */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 1px 18px; /* Padding dentro de cada elemento de lista */
+    border-bottom: 1px solid #e9ecef; /* Borde sutil, consistente */
+    font-size: 1.05em;
+    color: #495057; /* Consistente con tu texto */
+    transition: background-color 0.2s ease;
+}
+
+.tallas-list-container li:last-child {
+    border-bottom: none; /* Elimina el borde inferior del último elemento */
+}
+
+.tallas-list-container li:hover {
+    background-color: #f8f9fa; /* Fondo suave al pasar el ratón, consistente con tr:nth-child(even) */
+}
+
+.talla-info {
+    font-weight: 500;
+    color: #343a40; /* Texto de información más oscuro */
+}
+/* Estilo para el botón de eliminar talla (❌) */
+.remove-talla-btn {
+    background: none; /* Sin fondo */
+    border: none;
+    font-size: 1.4em; /* Icono un poco más grande */
+    cursor: pointer;
+    color: #dc3545; /* Rojo de Bootstrap (danger) o tu #e70b0b */
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    padding: 5px;
+    border-radius: 4px; /* Pequeños bordes para el hover */
+}
+
+.remove-talla-btn:hover {
+    transform: scale(1.15); /* Se agranda un poco más */
+    opacity: 0.9;
+    background-color: rgba(220, 53, 69, 0.1); /* Fondo sutil al hacer hover */
+}
+
+.no-tallas-message {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 20px 0;
+    font-size: 1.1em;
+    background-color: #f8f9fa; /* Fondo consistente */
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+
+
+/* estilos de formulario */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select {
+  width: 100%;
+  padding: 12px 15px; /* Aumenta el padding para inputs más grandes */
+  border: 1px solid #ced4da; /* Borde sutil */
+  border-radius: 6px; /* Bordes más redondeados */
+  box-sizing: border-box;
+  font-size: 1em;
+  color: #495057;
+  background-color: #fcfcfc; /* Fondo ligeramente diferente para inputs */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #007bff; /* Resalta el borde al enfocar */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra de enfoque azul */
+  outline: none; /* Elimina el contorno predeterminado del navegador */
+}
+
+/* Contenedor de botones del formulario */
+.botones {
+  grid-column: 1 / -1; /* Ocupa todas las columnas */
+  display: flex;
+  justify-content: center; /* Centra los botones */
+  gap: 15px; /* Espacio entre los botones */
+  margin-top: 20px;
+}
+
+/* Botones */
+.btn {
+  padding: 12px 25px; /* Aumenta el padding de los botones */
+  border: none;
+  border-radius: 6px; /* Bordes más redondeados */
+  cursor: pointer;
+  font-size: 1.1em; /* Fuente ligeramente más grande */
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  min-width: 150px; /* Ancho mínimo para consistencia */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+.btn-secundary {
+  background-color: #e70b0b;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px); /* Ligero efecto de elevación al pasar el ratón */
+}
+.btn-secundary:hover {
+  background-color: #cc2323;
+  transform: translateY(-1px); /* Ligero efecto de elevación al pasar el ratón */
+}
+
+/* Tabla responsive */
+.table-responsive {
+  overflow-x: auto; /* Mantiene la tabla scrollable horizontalmente en pantallas pequeñas */
+  margin-top: 20px; /* Espacio encima de la tabla */
+}
+
+table {
+  width: 100%;
+  border-collapse: separate; /* Permite border-spacing */
+  border-spacing: 0; /* Elimina espacio por defecto si lo hubiera */
+  margin-top: 15px;
+  background-color: #ffffff;
+  border-radius: 8px; /* Redondea las esquinas de la tabla */
+  overflow: hidden; /* Asegura que el border-radius se aplique */
+}
+
+table th,
+table td {
+  border: 1px solid #dee2e6; /* Borde más suave */
+  padding: 15px; /* Más padding para celdas */
+  text-align: left;
+  vertical-align: middle; /* Alineación vertical */
+}
+
+table thead th {
+  background-color: #e9ecef; /* Fondo más claro para el encabezado */
+  color: #495057;
+  font-weight: 700; /* Texto del encabezado más audaz */
+  text-transform: uppercase; /* Texto en mayúsculas para encabezados */
+  font-size: 0.9em;
+  letter-spacing: 0.05em; /* Espaciado entre letras */
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f8f9fa; /* Filas pares con fondo ligeramente diferente */
+}
+
+table tbody tr:hover {
+  background-color: #e2f2ff; /* Resalta la fila al pasar el ratón */
+  cursor: pointer;
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #6c757d;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+/* Estilo para el ícono de Eliminar (rojo) */
+mat-icon[fontIcon="delete"] {
+  background-color: #e70b0b; /* Fondo rojo vibrante */
+  color: white; /* Ícono en color blanco */
+  cursor: pointer; /* Indica que es clickeable */
+  margin-right: 8px; /* Espacio entre los íconos */
+  padding: 6px; /* Añade padding para que el fondo sea visible */
+  border-radius: 15%; /* Hace el fondo circular */
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; /* Transición suave */
+}
+
+mat-icon[fontIcon="delete"]:hover {
+  background-color: #cc2323; /* Un rojo más oscuro al pasar el ratón */
+  transform: scale(1.1); /* Ligeramente más grande al pasar el ratón */
+}
+
+/* Estilo para el ícono de Editar (verde de fondo, blanco de ícono) */
+mat-icon[fontIcon="edit"] {
+  background-color: #28a745; /* Fondo verde vibrante */
+  color: white; /* Ícono en color blanco */
+  cursor: pointer; /* Indica que es clickeable */
+  margin-left: 8px; /* Espacio entre los íconos */
+  padding: 6px; /* Añade padding para que el fondo sea visible */
+  border-radius: 15%; /* Hace el fondo circular */
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; /* Transición suave */
+}
+
+mat-icon[fontIcon="edit"]:hover {
+  background-color: #218838; /* Un verde más oscuro al pasar el ratón */
+  transform: scale(1.1); /* Ligeramente más grande al pasar el ratón */
+}
+
+/* Opcional: Si quieres que los íconos estén más juntos o alineados */
+td mat-icon {
+    vertical-align: middle; /* Alinea los íconos verticalmente en el centro de la celda */
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+  .products-container {
+    padding: 15px; /* Menos padding en pantallas más pequeñas */
+  }
+
+  .form-card,
+  .table-card {
+    padding: 20px; /* Menos padding dentro de las tarjetas en móviles */
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+
+  h3 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .btn {
+    font-size: 0.95em;
+    padding: 10px 15px;
+  }
+
+  table th,
+  table td {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  .btn-sm {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-container {
+    padding: 10px;
+  }
+
+  .form-card,
+  .table-card {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+
+  .btn {
+    width: 100%; /* Botón de agregar venta ocupa todo el ancho */
+    min-width: unset;
+  }
+
+  /* Para las tablas en móviles, puedes considerar un enfoque de "cards" si hay muchas columnas */
+  /* Aunque overflow-x: auto ya ayuda bastante */
+}

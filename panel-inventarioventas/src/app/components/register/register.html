@@ -1,0 +1,46 @@
+<div class="registro-container">
+  <mat-card class="registro-card">
+    <mat-card-title class="titulo-centrado">Registrarse</mat-card-title>
+
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="username" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Número</mat-label>
+        <input matInput formControlName="telefono" type="tel" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput formControlName="email" type="email" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" type="password" required />
+      </mat-form-field>
+
+     <div class="botones-container">
+        <button class="demo-button" mat-raised-button  type="submit" [disabled]="registroForm.invalid">
+            Registrarse
+        </button>
+        <button class="demo-button" mat-raised-button  type="button" routerLink="/login">
+            Ya tengo cuenta
+        </button>
+     </div>
+    </form>
+  </mat-card>
+</div>

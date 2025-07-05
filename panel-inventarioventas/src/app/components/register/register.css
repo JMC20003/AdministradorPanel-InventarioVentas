@@ -1,0 +1,42 @@
+.registro-container {
+  display: flex;
+  justify-content: center;
+  background: #f0f2f5;
+  padding: 20px;
+}
+
+.registro-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background-color:whitesmoke;  
+  color: black;
+}
+
+.titulo-centrado {
+  text-align: center;
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+button {
+  width: 80%;
+}
+.demo-button{
+    background-color: whitesmoke;
+    color: black;  }
+
+.demo-button:hover{
+    background-color: wheat;
+}
+.botones-container {
+  display: flex;
+  flex-direction: column; /* uno debajo del otro */
+  align-items: center;     /* centrado horizontalmente */
+  gap: 10px;               /* espacio entre botones */
+}

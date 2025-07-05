@@ -1,0 +1,90 @@
+<div class="ventas-container">
+  <!-- Encabezado con botón "Volver" a la derecha -->
+  <div class="ventas-header">
+    <h2>Historial de Ventas</h2>
+    <button mat-stroked-button class="ver-ventas-btn" routerLink="/ventas">
+      Volver
+    </button>
+  </div>
+
+  
+
+  <table mat-table [dataSource]="listaVentas" class="mat-elevation-z2 full-width-table">
+
+    <!-- ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let venta">{{ venta.id }}</td>
+    </ng-container>
+
+    <!-- Fecha -->
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef>Fecha</th>
+      <td mat-cell *matCellDef="let venta">{{ venta.fechaVenta | date:'medium' }}</td>
+    </ng-container>
+
+    <!-- Usuario -->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef>Usuario</th>
+      <td mat-cell *matCellDef="let venta">{{ venta.nombreUsuario }}</td>
+    </ng-container>
+
+    <!-- Subtotal -->
+    <ng-container matColumnDef="subtotal">
+      <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+      <td mat-cell *matCellDef="let venta">{{ venta.subTotal | currency:'USD' }}</td>
+    </ng-container>
+
+    <!-- Productos (tabla anidada) -->
+    <ng-container matColumnDef="productos">
+      <th mat-header-cell *matHeaderCellDef>Productos</th>
+      <td mat-cell *matCellDef="let venta">
+        <table mat-table [dataSource]="venta.productosVendidos" class="mini-table">
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let p">{{ p.nombreProducto }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="talla">
+            <th mat-header-cell *matHeaderCellDef>Talla</th>
+            <td mat-cell *matCellDef="let p">{{ p.talla }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="cantidad">
+            <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+            <td mat-cell *matCellDef="let p">{{ p.cantidad }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let p">{{ p.precioUnitario | currency:'USD' }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="['nombre', 'talla', 'cantidad', 'precio']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['nombre', 'talla', 'cantidad', 'precio'];"></tr>
+        </table>
+      </td>
+    </ng-container>
+
+    <!-- Acciones -->
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let venta">
+        <button mat-icon-button color="primary" >
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button class="modify" >
+          <mat-icon aria-hidden="false" aria-label="Modificar producto" fontIcon="edit" ></mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="eliminarProducto(venta.id)">
+          <mat-icon >delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Cabeceras y filas -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

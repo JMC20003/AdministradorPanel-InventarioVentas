@@ -1,0 +1,51 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.titulo-centrado {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: block; /* Asegura que respete el centrado */
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background-color:whitesmoke; 
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+input{
+    background-color: black;
+}
+/* Forzar el color del input y el label */
+.mat-form-field-infix input {
+  color: black !important;
+}
+
+.mat-form-field-label {
+  color: black !important;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.demo-button{
+    background-color: whitesmoke;
+    color: black;  }
+
+.demo-button:hover{
+    background-color: wheat;
+}
+.botones-container {
+  display: flex;
+  flex-direction: column; /* uno debajo del otro */
+  align-items: center;     /* centrado horizontalmente */
+  gap: 10px;               /* espacio entre botones */
+}

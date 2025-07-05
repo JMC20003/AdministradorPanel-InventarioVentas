@@ -1,0 +1,199 @@
+<div class="products-container">
+  <h2>Gestión de Productos</h2>
+
+  <div class="form-card">
+    <h3>Agregar Nuevo Producto</h3>
+    <form>
+      <div class="form-group">
+        <label for="productName">Nombre del Producto:</label>
+        <input
+          type="text"
+          id="productName"
+          [(ngModel)]="producto.nombre"
+          name="nombre"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="productPrice">Precio:</label>
+        <input
+          type="number"
+          id="productPrice"
+          [(ngModel)]="producto.precio"
+          name="precio"
+          required
+        />
+      </div>
+      <div class="talla-stock-input-group">
+  <div class="form-group talla-input">
+    <label for="talla">Talla:</label>
+    <input type="text" id="talla" [(ngModel)]="talla" name="tallaTemp" placeholder="Ej. S, M, L, XL" />
+  </div>
+
+  <div class="form-group stock-input">
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" [(ngModel)]="stock" name="stockTemp" placeholder="Cantidad" />
+  </div>
+
+  <button type="button" (click)="agregarTalla()">Agregar Talla</button>
+</div>
+
+<div class="tallas-list-container">
+  <ul *ngIf="producto.tallas && producto.tallas.length > 0">
+    <li *ngFor="let t of producto.tallas; let i = index">
+      <span class="talla-info">{{ t.talla }} - Stock: {{ t.stock }}</span>
+      <button type="button" class="remove-talla-btn" (click)="eliminarTalla(i)">❌</button>
+    </li>
+  </ul>
+  <p *ngIf="!producto.tallas || producto.tallas.length === 0" class="no-tallas-message">
+    No hay tallas agregadas para este producto.
+  </p>
+</div>
+
+
+      <div class="form-group">
+        <label for="productCategoria">Categoria:</label>
+        <select
+          type="text"
+          id="productCategoria"
+          [(ngModel)]="producto.categoria"
+          name="categoria"
+          required
+        >
+          <option value="">-- Selecciona una categoría --</option>
+          <option value="adultos">Adultos</option>
+          <option value="niños">Niños</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="productDescripcion">Descripcion:</label>
+        <input
+          type="text"
+          id="productDescripcion"
+          [(ngModel)]="producto.descripcion"
+          name="descripcion"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="productDescripcion">Imagen:</label>
+        <input
+          type="text"
+          id="productImagen"
+          [(ngModel)]="producto.imagen"
+          name="imagen"
+          required
+        />
+      </div>
+
+      <div class="botones">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="AgregarProducto()"
+        >
+          Agregar Producto
+        </button>
+        <button
+          type="button"
+          class="btn btn-secundary"
+          (click)="limpiarFormulario()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="table-card">
+    <h3>Productos Existentes</h3>
+    <div class="table-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar producto...</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          #input
+          placeholder="Ej. Camiseta "
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dsLista" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element" data-label="ID">
+            {{ element.id }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element" data-label="Nombre">
+            {{ element.nombre }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="precio">
+          <th mat-header-cell *matHeaderCellDef>Precio</th>
+          <td mat-cell *matCellDef="let element" data-label="Precio">
+            {{ element.precio | currency : "USD" : "symbol" : "1.2-2" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tallas">
+          <th mat-header-cell *matHeaderCellDef>Talla</th>
+          <td mat-cell *matCellDef="let element" data-label="Tallas">
+           {{ formatearTallas(element.tallas) }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="stock">
+          <th mat-header-cell *matHeaderCellDef>Stock Total</th>
+          <td mat-cell *matCellDef="let element" data-label="Stock">
+            {{ calcularStockTotal(element.tallas) }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="categoria">
+          <th mat-header-cell *matHeaderCellDef>Categoría</th>
+          <td mat-cell *matCellDef="let element" data-label="Categoría">
+            {{ element.categoria }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+          <td mat-cell *matCellDef="let element" data-label="Descripcion">
+            {{ element.descripcion }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="imagen">
+          <th mat-header-cell *matHeaderCellDef>Imagen</th>
+          <td mat-cell *matCellDef="let element" data-label="Imagen">
+            <img [src]="element.imagen" alt="Imagen" width="60" height="60" />
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element" data-label="Acciones">
+            <mat-icon aria-hidden="false" aria-label="Eliminar producto" fontIcon="delete" (click)="EliminarProducto(element.id)"></mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Modificar producto" fontIcon="edit" [routerLink]="['/modificar-producto', element.id]"></mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="7">
+            No se encontraron productos que coincidan con "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
