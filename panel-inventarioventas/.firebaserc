@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "tienda-rjsc",
+    "groupby-test": "tienda-rjsc",
+    "tester": "tienda-rjsc",
+    "deployFront": "tienda-rjsc",
+    "deployfront": "tienda-rjsc",
+    "frontdeploy": "tienda-rjsc",
+    "deployed": "tienda-rjsc",
+    "deploy": "tienda-rjsc"
+  },
+  "targets": {},
+  "etags": {}
+}

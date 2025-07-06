@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class VentaService {
 
-  private baseUrl = 'https://api.tiendarjsc.site/api/productos';
+  private baseUrl = 'https://api.tiendarjsc.site/api/ventas';
   //private baseUrl = 'http://localhost:8080/api/ventas';
 
   constructor(private clientHTTP: HttpClient) {}
