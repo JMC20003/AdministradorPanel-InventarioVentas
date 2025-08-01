@@ -42,10 +42,6 @@ mat-card-title {
     font-weight: 600;
 }
 
-mat-card-content {
-    padding-top: 15px; /* Espacio entre el título de la tarjeta y el contenido del formulario */
-}
-
 /* Campos de formulario de Angular Material */
 .full-width {
     width: 100%; /* Asegura que los campos ocupen todo el ancho */

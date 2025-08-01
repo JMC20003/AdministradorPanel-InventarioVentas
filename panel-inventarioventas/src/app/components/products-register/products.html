@@ -1,110 +1,167 @@
 <div class="products-container">
   <h2>Gestión de Productos</h2>
 
-  <div class="form-card">
-    <h3>Agregar Nuevo Producto</h3>
-    <form>
-      <div class="form-group">
-        <label for="productName">Nombre del Producto:</label>
-        <input
-          type="text"
-          id="productName"
-          [(ngModel)]="producto.nombre"
-          name="nombre"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="productPrice">Precio:</label>
-        <input
-          type="number"
-          id="productPrice"
-          [(ngModel)]="producto.precio"
-          name="precio"
-          required
-        />
-      </div>
-      <div class="talla-stock-input-group">
-  <div class="form-group talla-input">
-    <label for="talla">Talla:</label>
-    <input type="text" id="talla" [(ngModel)]="talla" name="tallaTemp" placeholder="Ej. S, M, L, XL" />
-  </div>
+  <mat-card>
+    <mat-card-title class="titulo">Agregar Nuevo Producto</mat-card-title>
+    <mat-card-content>
+      <form #productoForm="ngForm">
+        <!-- Nombre -->
+        <mat-form-field appearance="outline" class="form-group full-width">
+          <mat-label>Nombre del Producto</mat-label>
+          <input
+            matInput
+            [(ngModel)]="producto.nombre"
+            name="nombre"
+            required
+          />
+        </mat-form-field>
 
-  <div class="form-group stock-input">
-    <label for="stock">Stock:</label>
-    <input type="number" id="stock" [(ngModel)]="stock" name="stockTemp" placeholder="Cantidad" />
-  </div>
+        <!-- Precio -->
+        <mat-form-field appearance="outline" class="form-group full-width">
+          <mat-label>Precio</mat-label>
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="producto.precio"
+            name="precio"
+            required
+          />
+        </mat-form-field>
 
-  <button type="button" (click)="agregarTalla()">Agregar Talla</button>
-</div>
+        <!-- Talla y Stock -->
+        <div class="talla-stock-input-group">
+          <mat-form-field appearance="outline" class="form-group talla-input">
+            <mat-label>Talla</mat-label>
+            <input
+              matInput
+              [(ngModel)]="talla"
+              name="tallaTemp"
+              placeholder="Ej. S, M, L, XL"
+            />
+          </mat-form-field>
 
-<div class="tallas-list-container">
-  <ul *ngIf="producto.tallas && producto.tallas.length > 0">
-    <li *ngFor="let t of producto.tallas; let i = index">
-      <span class="talla-info">{{ t.talla }} - Stock: {{ t.stock }}</span>
-      <button type="button" class="remove-talla-btn" (click)="eliminarTalla(i)">❌</button>
-    </li>
-  </ul>
-  <p *ngIf="!producto.tallas || producto.tallas.length === 0" class="no-tallas-message">
-    No hay tallas agregadas para este producto.
-  </p>
-</div>
+          <mat-form-field appearance="outline" class="form-group stock-input">
+            <mat-label>Stock</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="stock"
+              name="stockTemp"
+              placeholder="Cantidad"
+            />
+          </mat-form-field>
 
-
-      <div class="form-group">
-        <label for="productCategoria">Categoria:</label>
-        <select
-          type="text"
-          id="productCategoria"
-          [(ngModel)]="producto.categoria"
-          name="categoria"
-          required
+          <button
+            mat-raised-button
+            class="agregar-talla-btn"
+            type="button"
+            (click)="agregarTalla()"
+            [disabled]="!talla || !stock"
+          >
+            Agregar Talla
+          </button>
+        </div>
+        <div
+          class="tallas-list-container"
+          *ngIf="producto.tallas && producto.tallas.length > 0"
         >
-          <option value="">-- Selecciona una categoría --</option>
-          <option value="adultos">Adultos</option>
-          <option value="niños">Niños</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="productDescripcion">Descripcion:</label>
-        <input
-          type="text"
-          id="productDescripcion"
-          [(ngModel)]="producto.descripcion"
-          name="descripcion"
-          required
-        />
-      </div>
+          <h3>Tallas Agregadas</h3>
+          <ul>
+            <li *ngFor="let talla of producto.tallas; let i = index">
+              <span class="talla-info"
+                >{{ talla.talla }} (Stock: {{ talla.stock }})</span
+              >
+              <button
+                mat-icon-button
+                class="remove-talla-btn"
+                (click)="eliminarTalla(i)"
+              >
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </div>
 
-      <div class="form-group">
-        <label for="productDescripcion">Imagen:</label>
-        <input
-          type="text"
-          id="productImagen"
-          [(ngModel)]="producto.imagen"
-          name="imagen"
-          required
-        />
-      </div>
+        <!-- Categoría -->
+        <mat-form-field appearance="outline" class="form-group full-width">
+          <mat-label>Categoría</mat-label>
+          <mat-select
+            [(ngModel)]="producto.categoria"
+            name="categoria"
+            required
+          >
+            <mat-option value="">-- Selecciona una categoría --</mat-option>
+            <mat-option value="adultos">Adultos</mat-option>
+            <mat-option value="niños">Niños</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <div class="botones">
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="AgregarProducto()"
-        >
-          Agregar Producto
-        </button>
-        <button
-          type="button"
-          class="btn btn-secundary"
-          (click)="limpiarFormulario()"
-        >
-          Cancelar
-        </button>
-      </div>
-    </form>
-  </div>
+        <!-- Descripción -->
+        <mat-form-field appearance="outline" class="form-group full-width">
+          <mat-label>Descripción</mat-label>
+          <input
+            matInput
+            [(ngModel)]="producto.descripcion"
+            name="descripcion"
+            required
+          />
+        </mat-form-field>
+
+        <!-- Imagen -->
+        <mat-card class="upload-card form-group">
+          <mat-card-title class="titulodeimagen">Subir Imagen</mat-card-title>
+          <div class="file-input-wrapper">
+            <button
+              mat-raised-button
+              class="subir-imagen-btn"
+              type="button"
+              (click)="fileInput.click()"
+            >
+              Seleccionar Imagen
+            </button>
+            <input
+              #fileInput
+              type="file"
+              hidden
+              (change)="onFileSelected($event)"
+              accept="image/*"
+            />
+          </div>
+          <div class="image-preview" *ngIf="imagenPreview">
+            <img [src]="imagenPreview" alt="Vista previa" width="150" />
+          </div>
+        </mat-card>
+
+        <!-- Botones -->
+        <div class="button-group mt-2">
+          <button
+            mat-raised-button
+            class="agregar-producto-btn"
+            type="button"
+            (click)="AgregarProducto()"
+            [disabled]="
+              !producto.tallas.length ||
+              !producto.nombre ||
+              !producto.precio ||
+              !producto.categoria ||
+              !producto.descripcion ||
+              !producto.imagen
+            "
+          >
+            Agregar Producto
+          </button>
+          <button
+            mat-raised-button
+            class="cancelar-btn"
+            type="button"
+            (click)="limpiarFormulario()"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
   <div class="table-card">
     <h3>Productos Existentes</h3>
@@ -145,7 +202,7 @@
         <ng-container matColumnDef="tallas">
           <th mat-header-cell *matHeaderCellDef>Talla</th>
           <td mat-cell *matCellDef="let element" data-label="Tallas">
-           {{ formatearTallas(element.tallas) }}
+            {{ formatearTallas(element.tallas) }}
           </td>
         </ng-container>
 
@@ -173,15 +230,30 @@
         <ng-container matColumnDef="imagen">
           <th mat-header-cell *matHeaderCellDef>Imagen</th>
           <td mat-cell *matCellDef="let element" data-label="Imagen">
-            <img [src]="element.imagen" alt="Imagen" width="60" height="60" />
+            <img
+              [src]="'http://localhost:8080' + element.imagen"
+              alt="Imagen"
+              width="60"
+              height="60"
+            />
           </td>
         </ng-container>
 
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef>Acciones</th>
           <td mat-cell *matCellDef="let element" data-label="Acciones">
-            <mat-icon aria-hidden="false" aria-label="Eliminar producto" fontIcon="delete" (click)="EliminarProducto(element.id)"></mat-icon>
-            <mat-icon aria-hidden="false" aria-label="Modificar producto" fontIcon="edit" [routerLink]="['/modificar-producto', element.id]"></mat-icon>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Eliminar producto"
+              fontIcon="delete"
+              (click)="EliminarProducto(element.id)"
+            ></mat-icon>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Modificar producto"
+              fontIcon="edit"
+              [routerLink]="['/modificar-producto', element.id]"
+            ></mat-icon>
           </td>
         </ng-container>
 

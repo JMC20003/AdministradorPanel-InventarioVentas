@@ -3,6 +3,14 @@
   padding: 20px;
 }
 
+h2 {
+ font-size: 2.5em; /* Título más prominente */
+    color: #000000; /* Color oscuro para el texto principal */
+    margin-bottom: 40px; /* Más espacio debajo del título */
+    text-align: center;
+    font-weight: 700; /* Más grosor para el título principal */
+    letter-spacing: -0.5px; /* Un ligero ajuste para el espaciado de letras */
+}
 .charts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas */

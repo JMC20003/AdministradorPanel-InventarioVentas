@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductoRegistroDTO} from '../../models/ProductoRegistroDTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductoService } from '../../services/producto-service';
@@ -23,6 +23,15 @@ export class Products implements OnInit{
     imagen: '',
     tallas: []
   };
+
+  //para cargar imagenes
+  imagenPreview: string | null = null;
+  selectedFile: File | null = null;
+  cargando = false;
+  public BASE_URL = 'http://localhost:8080/api/productos';
+  // Dentro del componente
+@ViewChild('fileInput') fileInput!: ElementRef;
+// en tu componente TS
 
   // Campos para agregar talla temporal
   talla: string = '';
@@ -91,7 +100,9 @@ export class Products implements OnInit{
     };
     this.talla = '';
     this.stock = 0;
+    this.imagenPreview = null
   }
+
 
   CargarDatos(): void {
     this.servicioProducto.obtenerTodosLosProductos().subscribe({
@@ -127,4 +138,42 @@ export class Products implements OnInit{
   if (!tallas || tallas.length === 0) return '-';
   return tallas.map(t => `${t.talla} (${t.stock})`).join(', ');
 }
+
+
+//subir las imagenes
+
+onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+
+      // Mostrar vista previa
+      const reader = new FileReader();
+      reader.onload = () => this.imagenPreview = reader.result as string;
+      reader.readAsDataURL(this.selectedFile);
+
+      // Subir imagen
+      this.subirImagen();
+    }
+  }
+
+  subirImagen() {
+    if (!this.selectedFile) return;
+
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+
+    this.http.post(this.BASE_URL + '/upload-imagen', formData, { responseType: 'text' })
+      .subscribe({
+        next: (url: string) => {
+          this.producto.imagen = url; // URL relativa devuelta por backend
+        },
+        error: err => {
+          alert('Error al subir imagen');
+          console.error(err);
+        }
+      });
+  }
+
 }

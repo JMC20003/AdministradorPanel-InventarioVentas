@@ -29,8 +29,8 @@ interface JwtPayload {
 })
 export class Auth {
 
-  private baseUrl = 'https://api.tiendarjsc.site/auth';
-  //private baseUrl = 'http://localhost:8080/auth';
+  //private baseUrl = 'https://api.tiendarjsc.site/auth';
+  private baseUrl = 'http://localhost:8080/auth';
   constructor(private http: HttpClient) { }
 
   login(data: AuthRequest): Observable<any> {
